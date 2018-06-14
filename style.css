@@ -1,0 +1,33 @@
+.maincontainer {
+  width: 660px;
+  height: 702px;
+}
+
+.menu {
+  height: 38px;
+  width: 658px;
+  background: lightgrey;
+  border: 1px solid grey;
+}
+
+.reset {
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+  background: darkgrey;
+}
+
+.board {
+  width: 660px;
+  height: 660px;
+}
+
+.cell {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  color: grey;
+  border: 1px solid darkgrey;
+  vertical-align: top;
+  text-align: center;
+}
