@@ -2,7 +2,7 @@ window.onload = () => {
   createBoard()
   addMines()
   placeClues()
-  renderAllAnswers()
+  // renderAllAnswers()
 }
 
 let numOfMines = 50;
@@ -25,8 +25,9 @@ function createBoard() {
   boardContainer.classList.add('board')
   for(let i = 0; i < (bWidth * bHeight); i++) {
     let cell = document.createElement('div');
-    cell.classList.add('cell');
+    cell.classList.add('cell', 'unselected');
     cell.setAttribute('id', i)
+    cell.addEventListener('click', handleClick)
     boardContainer.appendChild(cell)
   }
   mainContainer.appendChild(boardContainer)
@@ -246,7 +247,13 @@ function renderAllAnswers() {
   })
 }
 
-
+function handleClick() {
+  this.classList.toggle('unselected')
+  let cellID = this.getAttribute('id')
+  if(typeof memory[cellID] !== 'undefined') {
+    this.innerText = memory[cellID]
+  }
+}
 
 
 

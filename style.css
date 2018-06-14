@@ -26,8 +26,20 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  color: grey;
+  background: lightgrey;
   border: 1px solid darkgrey;
   vertical-align: top;
   text-align: center;
+}
+
+div.unselected {
+  width: 22px;
+  height: 22px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  background: lightgrey;
+  border-top: 2px solid darkgrey;
+  border-left: 2px solid darkgrey;
+  border-bottom: 2px solid grey;
+  border-right: 2px solid grey;
 }
