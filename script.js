@@ -2,10 +2,9 @@ window.onload = () => {
   createBoard()
   addMines()
   placeClues()
-  // renderAllAnswers()
 }
 
-let numOfMines = 50;
+let numOfMines = 75;
 let bWidth = 30;
 let bHeight = 30;
 let memory = []
@@ -16,6 +15,7 @@ function createBoard() {
   let menu = document.createElement('div')
   let resetButton = document.createElement('div')
   resetButton.classList.add('reset')
+  resetButton.addEventListener('click', resetGame)
   mainContainer.classList.add('maincontainer')
   menu.classList.add('menu')
   menu.appendChild(resetButton)
@@ -248,14 +248,76 @@ function renderAllAnswers() {
 }
 
 function handleClick() {
-  this.classList.toggle('unselected')
-  let cellID = this.getAttribute('id')
-  if(typeof memory[cellID] !== 'undefined') {
-    this.innerText = memory[cellID]
+  if(this.classList.contains('unselected')) {
+    this.classList.remove('unselected')
+    let allCells = document.querySelectorAll('.cell');
+    let cellID = parseInt(this.getAttribute('id'))
+    if(typeof memory[cellID] !== 'undefined') {
+      this.innerText = memory[cellID]
+    } else {
+      if(typeof memory[cellID - bWidth] === 'undefined' && cellID >= bWidth && allCells[cellID - bWidth].classList.contains('unselected')) {
+        // allCells[cellID - bWidth].setAttribute('style', 'background: darkgrey')
+        setTimeout(() => {
+          allCells[cellID - bWidth].click()
+          // allCells[cellID - bWidth].removeAttribute('style')
+        },80)
+      }
+      if(typeof memory[cellID + 1] === 'undefined' && cellID%30 !== 29 && allCells[cellID + 1].classList.contains('unselected')) {
+        // allCells[cellID - bWidth].setAttribute('style', 'background: darkgrey')
+        setTimeout(() => {
+          allCells[cellID + 1].click()
+          // allCells[cellID + 1].removeAttribute('style')
+        },80)
+      }
+      if(typeof memory[cellID + bWidth] === 'undefined' && cellID < ((bWidth * bHeight) - bWidth) && allCells[cellID + bWidth].classList.contains('unselected')) {
+        // allCells[cellID - bWidth].setAttribute('style', 'background: darkgrey')
+        setTimeout(() => {
+          allCells[cellID + bWidth].click()
+          // allCells[cellID + bWidth].removeAttribute('style')
+        },80)
+      }
+      if(typeof memory[cellID - 1] === 'undefined' && cellID%30 !== 0 && allCells[cellID - 1].classList.contains('unselected')) {
+        // allCells[cellID - bWidth].setAttribute('style', 'background: darkgrey')
+        setTimeout(() => {
+          allCells[cellID - 1].click()
+          // allCells[cellID - 1].removeAttribute('style')
+        },80)
+      }
+    }
+    if(this.innerText === '1') {
+      this.setAttribute('style', 'color: blue')
+    } else if(this.innerText === '2') {
+      this.setAttribute('style', 'color: purple')
+    } else if(this.innerText === '3') {
+      this.setAttribute('style', 'color: red')
+    } else if(this.innerText === '4') {
+      this.setAttribute('style', 'color: teal')
+    } else if(this.innerText === '5') {
+      this.setAttribute('style', 'color: orange')
+    }
+  }
+  if(this.innerText === 'm') {
+    alert('GameOver')
   }
 }
 
+function resetGame() {
+  memory = []
+  let allCells = document.querySelectorAll('.cell');
+  allCells.forEach(cell => {
+    if(!cell.classList.contains('unselected')) {
+      cell.classList.add('unselected')
+    }
+    cell.innerText = ''
 
+  })
+  addMines()
+  placeClues()
+}
+
+function checkWinCondition() {
+
+}
 
 
 
