@@ -13,7 +13,7 @@
 .reset {
   width: 20px;
   height: 20px;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
   background: darkgrey;
 }
 
@@ -26,7 +26,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  background: lightgrey;
+  background: silver;
   border: 1px solid darkgrey;
   vertical-align: top;
   text-align: center;
@@ -43,3 +43,29 @@ div.unselected {
   border-bottom: 2px solid grey;
   border-right: 2px solid grey;
 }
+
+.flexbox {
+  display: flex;
+  justify-content: center;
+}
+
+.flex {
+  flex: 1;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+

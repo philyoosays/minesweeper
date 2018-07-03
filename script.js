@@ -4,21 +4,30 @@ window.onload = () => {
   placeClues()
 }
 
-let numOfMines = 75;
+let numOfMines = 50;
 let bWidth = 30;
 let bHeight = 30;
-let memory = []
+let memory = [];
+let firstClick = false;
 
 function createBoard() {
   let body = document.querySelector('body')
   let mainContainer = document.createElement('div')
   let menu = document.createElement('div')
   let resetButton = document.createElement('div')
-  resetButton.classList.add('reset')
+  let timer = document.createElement('h1')
+  let counter = document.createElement('h1')
+  resetButton.classList.add('reset', 'flex')
   resetButton.addEventListener('click', resetGame)
+  timer.classList.add('timer', 'flex')
+  timer.innerText = 0
+  counter.classList.add('flex')
+  counter.innerText = 0
   mainContainer.classList.add('maincontainer')
-  menu.classList.add('menu')
+  menu.classList.add('menu', 'flexbox')
+  menu.appendChild(timer)
   menu.appendChild(resetButton)
+  menu.appendChild(counter)
   mainContainer.appendChild(menu)
 
   let boardContainer = document.createElement('div')
@@ -248,6 +257,13 @@ function renderAllAnswers() {
 }
 
 function handleClick() {
+  if(firstClick === false) {
+    firstClick = true;
+    let timer = document.querySelector('h1')
+    var ticker = setInterval(() => {
+      timer.innerText = parseInt(timer.innerText) + 1
+    }, 1000)
+  }
   if(this.classList.contains('unselected')) {
     this.classList.remove('unselected')
     let allCells = document.querySelectorAll('.cell');
@@ -298,12 +314,15 @@ function handleClick() {
   }
   if(this.innerText === 'm') {
     alert('GameOver')
+    clearInterval(ticker)
   }
 }
 
 function resetGame() {
   memory = []
   let allCells = document.querySelectorAll('.cell');
+  let timer = document.querySelector('h1')
+  timer.innerText = 0;
   allCells.forEach(cell => {
     if(!cell.classList.contains('unselected')) {
       cell.classList.add('unselected')
@@ -315,8 +334,11 @@ function resetGame() {
   placeClues()
 }
 
-function checkWinCondition() {
-
+function startTimer() {
+  let timer = document.querySelector('h1')
+  setInterval(() => {
+    timer.innerText = parseInt(timer.innerText) + 1
+  }, 1000)
 }
 
 
