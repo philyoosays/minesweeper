@@ -9,46 +9,51 @@ let bWidth = 30;
 let bHeight = 30;
 let memory = [];
 let firstClick = false;
+let counter = 0;
 
 function createBoard() {
-  let body = document.querySelector('body')
-  let mainContainer = document.createElement('div')
-  let menu = document.createElement('div')
-  let resetButton = document.createElement('div')
-  let timer = document.createElement('h1')
-  let counter = document.createElement('h1')
-  resetButton.classList.add('reset', 'flex')
-  resetButton.addEventListener('click', resetGame)
-  timer.classList.add('timer', 'flex')
-  timer.innerText = 0
-  counter.classList.add('flex')
-  counter.innerText = 0
-  mainContainer.classList.add('maincontainer')
-  menu.classList.add('menu', 'flexbox')
-  menu.appendChild(timer)
-  menu.appendChild(resetButton)
-  menu.appendChild(counter)
-  mainContainer.appendChild(menu)
+  let body = document.querySelector('body');
+  let mainContainer = document.createElement('div');
+  let menu = document.createElement('div');
+  let resetButton = document.createElement('div');
+  let timer = document.createElement('h1');
+  let counter = document.createElement('h1');
+  let smiley = document.createElement('img');
+  smiley.setAttribute('src', 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNi42MjcgMC0xMiA1LjM3My0xMiAxMnM1LjM3MyAxMiAxMiAxMiAxMi01LjM3MyAxMi0xMi01LjM3My0xMi0xMi0xMnptMy41IDhjLjgyOCAwIDEuNS42NzEgMS41IDEuNXMtLjY3MiAxLjUtMS41IDEuNS0xLjUtLjY3MS0xLjUtMS41LjY3Mi0xLjUgMS41LTEuNXptLTcgMGMuODI4IDAgMS41LjY3MSAxLjUgMS41cy0uNjcyIDEuNS0xLjUgMS41LTEuNS0uNjcxLTEuNS0xLjUuNjcyLTEuNSAxLjUtMS41em0zLjUwMSAxMGMtMi44MDEgMC00Ljg3NC0xLjg0Ni02LjAwMS0zLjU2NmwuNDkzLS40OTNjMS41MTIgMS4xOTUgMy4xNzQgMS45MzEgNS41MDggMS45MzEgMi4zMzMgMCAzLjk5NC0uNzM2IDUuNTA2LTEuOTMxbC40OTMuNDkzYy0xLjEyNyAxLjcyLTMuMTk5IDMuNTY2LTUuOTk5IDMuNTY2eiIvPjwvc3ZnPg==');
+  smiley.classList.add('flex', 'smiley');
+  resetButton.appendChild(smiley);
+  resetButton.classList.add('reset', 'flex', 'flexbox');
+  resetButton.addEventListener('click', resetGame);
+  timer.classList.add('timer', 'flex');
+  timer.innerText = '00:00';
+  counter.classList.add('flex', 'counter');
+  counter.innerText = '000';
+  mainContainer.classList.add('maincontainer');
+  menu.classList.add('menu', 'flexbox');
+  menu.appendChild(timer);
+  menu.appendChild(resetButton);
+  menu.appendChild(counter);
+  mainContainer.appendChild(menu);
 
-  let boardContainer = document.createElement('div')
-  boardContainer.classList.add('board')
+  let boardContainer = document.createElement('div');
+  boardContainer.classList.add('board');
   for(let i = 0; i < (bWidth * bHeight); i++) {
     let cell = document.createElement('div');
     cell.classList.add('cell', 'unselected');
-    cell.setAttribute('id', i)
-    cell.addEventListener('click', handleClick)
-    boardContainer.appendChild(cell)
+    cell.setAttribute('id', i);
+    cell.addEventListener('click', handleClick);
+    boardContainer.appendChild(cell);
   }
-  mainContainer.appendChild(boardContainer)
-  body.appendChild(mainContainer)
+  mainContainer.appendChild(boardContainer);
+  body.appendChild(mainContainer);
 }
 
 function addMines() {
-  let allCells = document.querySelectorAll('.cell')
+  let allCells = document.querySelectorAll('.cell');
   for(let i = 0; i < numOfMines; i++) {
-    let random = Math.floor(Math.random() * allCells.length)
+    let random = Math.floor(Math.random() * allCells.length);
     while(allCells[random].innerText !== '') {
-      random = Math.floor(Math.random() * allCells.length)
+      random = Math.floor(Math.random() * allCells.length);
     }
     memory[random] = 'm';
   }
@@ -259,9 +264,10 @@ function renderAllAnswers() {
 function handleClick() {
   if(firstClick === false) {
     firstClick = true;
-    let timer = document.querySelector('h1')
-    var ticker = setInterval(() => {
-      timer.innerText = parseInt(timer.innerText) + 1
+    let timerText = document.querySelector('h1')
+    setInterval(() => {
+      timerText.innerText = makeTimerFromCounter(counter);
+      counter++;
     }, 1000)
   }
   if(this.classList.contains('unselected')) {
@@ -319,19 +325,21 @@ function handleClick() {
 }
 
 function resetGame() {
-  memory = []
-  let allCells = document.querySelectorAll('.cell');
-  let timer = document.querySelector('h1')
-  timer.innerText = 0;
-  allCells.forEach(cell => {
-    if(!cell.classList.contains('unselected')) {
-      cell.classList.add('unselected')
-    }
-    cell.innerText = ''
+  document.location.reload();
+  // memory = [];
+  // clearInterval(ticker)
+  // let allCells = document.querySelectorAll('.cell');
+  // let timerText = document.querySelector('h1')
+  // timerText.innerText = 0;
+  // allCells.forEach(cell => {
+  //   if(!cell.classList.contains('unselected')) {
+  //     cell.classList.add('unselected')
+  //   }
+  //   cell.innerText = ''
 
-  })
-  addMines()
-  placeClues()
+  // })
+  // addMines()
+  // placeClues()
 }
 
 function startTimer() {
@@ -341,7 +349,11 @@ function startTimer() {
   }, 1000)
 }
 
-
+function makeTimerFromCounter(counter) {
+  let left = parseInt(counter / 60);
+  let right = counter % 60;
+  return left.toString().padStart(2, '0') + ':' + right.toString().padStart(2, '0');
+}
 
 
 
