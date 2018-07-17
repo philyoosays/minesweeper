@@ -18,10 +18,24 @@ function createBoard() {
   let resetButton = document.createElement('div');
   let timer = document.createElement('h1');
   let counter = document.createElement('h1');
-  let smiley = document.createElement('img');
-  smiley.setAttribute('src', 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNi42MjcgMC0xMiA1LjM3My0xMiAxMnM1LjM3MyAxMiAxMiAxMiAxMi01LjM3MyAxMi0xMi01LjM3My0xMi0xMi0xMnptMy41IDhjLjgyOCAwIDEuNS42NzEgMS41IDEuNXMtLjY3MiAxLjUtMS41IDEuNS0xLjUtLjY3MS0xLjUtMS41LjY3Mi0xLjUgMS41LTEuNXptLTcgMGMuODI4IDAgMS41LjY3MSAxLjUgMS41cy0uNjcyIDEuNS0xLjUgMS41LTEuNS0uNjcxLTEuNS0xLjUuNjcyLTEuNSAxLjUtMS41em0zLjUwMSAxMGMtMi44MDEgMC00Ljg3NC0xLjg0Ni02LjAwMS0zLjU2NmwuNDkzLS40OTNjMS41MTIgMS4xOTUgMy4xNzQgMS45MzEgNS41MDggMS45MzEgMi4zMzMgMCAzLjk5NC0uNzM2IDUuNTA2LTEuOTMxbC40OTMuNDkzYy0xLjEyNyAxLjcyLTMuMTk5IDMuNTY2LTUuOTk5IDMuNTY2eiIvPjwvc3ZnPg==');
-  smiley.classList.add('flex', 'smiley');
-  resetButton.appendChild(smiley);
+  // let smiley = document.createElement('img');
+  // smiley.setAttribute('src', 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNi42MjcgMC0xMiA1LjM3My0xMiAxMnM1LjM3MyAxMiAxMiAxMiAxMi01LjM3MyAxMi0xMi01LjM3My0xMi0xMi0xMnptMy41IDhjLjgyOCAwIDEuNS42NzEgMS41IDEuNXMtLjY3MiAxLjUtMS41IDEuNS0xLjUtLjY3MS0xLjUtMS41LjY3Mi0xLjUgMS41LTEuNXptLTcgMGMuODI4IDAgMS41LjY3MSAxLjUgMS41cy0uNjcyIDEuNS0xLjUgMS41LTEuNS0uNjcxLTEuNS0xLjUuNjcyLTEuNSAxLjUtMS41em0zLjUwMSAxMGMtMi44MDEgMC00Ljg3NC0xLjg0Ni02LjAwMS0zLjU2NmwuNDkzLS40OTNjMS41MTIgMS4xOTUgMy4xNzQgMS45MzEgNS41MDggMS45MzEgMi4zMzMgMCAzLjk5NC0uNzM2IDUuNTA2LTEuOTMxbC40OTMuNDkzYy0xLjEyNyAxLjcyLTMuMTk5IDMuNTY2LTUuOTk5IDMuNTY2eiIvPjwvc3ZnPg==');
+  // smiley.classList.add('flex', 'smiley');
+
+  // let path = document.createElement('path');
+  // let svg = document.createElement('svg');
+  // path.setAttribute('d', 'M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3.5 8c.828 0 1.5.671 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.671-1.5-1.5.672-1.5 1.5-1.5zm-7 0c.828 0 1.5.671 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.671-1.5-1.5.672-1.5 1.5-1.5zm3.501 10c-2.801 0-4.874-1.846-6.001-3.566l.493-.493c1.512 1.195 3.174 1.931 5.508 1.931 2.333 0 3.994-.736 5.506-1.931l.493.493c-1.127 1.72-3.199 3.566-5.999 3.566z');
+  // svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  // svg.setAttribute('width', '24');
+  // svg.setAttribute('height', '24');
+  // svg.setAttribute('viewBox', '0 0 24 24');
+  // svg.appendChild(path);
+
+  let smileyFace = document.getElementById('smiles')
+  smileyFace.setAttribute('style', 'flex: 1')
+
+  resetButton.appendChild(smileyFace);
+  // resetButton.appendChild(smiley);
   resetButton.classList.add('reset', 'flex', 'flexbox');
   resetButton.addEventListener('click', resetGame);
   timer.classList.add('timer', 'flex');
