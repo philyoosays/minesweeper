@@ -10,6 +10,7 @@ let bHeight = 30;
 let memory = [];
 let firstClick = false;
 let counter = 0;
+let score = 0;
 
 function createBoard() {
   let body = document.querySelector('body');
@@ -336,6 +337,35 @@ function handleClick() {
     alert('GameOver')
     clearInterval(ticker)
   }
+  // checkMines();
+}
+
+function checkMines() {
+  let allCells = document.querySelectorAll('.cell')
+  memory.forEach((data, index) => {
+    if(data === 'm') {
+      if(!allCells[index-bWidth-1].classList.contains('unselected')) {
+        if(!allCells[index-bWidth].classList.contains('unselected')) {
+          if(!allCells[index-bWidth+1].classList.contains('unselected')) {
+            if(!allCells[index+1].classList.contains('unselected')) {
+              if(!allCells[index+bWidth+1].classList.contains('unselected')) {
+                if(!allCells[index+bWidth].classList.contains('unselected')) {
+                  if(!allCells[index+bWidth-1].classList.contains('unselected')) {
+                    if(!allCells[index-1].classList.contains('unselected')) {
+                      allCells[index].setAttribute('style', 'background: red');
+                      score++;
+                      let theCounter = document.querySelector('.counter');
+                      theCounter.innerText = score.toString().padStart(2, '0');
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  })
 }
 
 function resetGame() {
