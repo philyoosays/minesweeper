@@ -63,6 +63,8 @@ h1 {
 .timer {
   background: rgb(0, 60, 0);
   color: lime;
+  height: 80%;
+  padding-bottom: 5px;
 }
 
 #smiles {
@@ -75,6 +77,8 @@ h1 {
 .counter {
   background: rgb(0, 60, 0);
   color: lime;
+  height: 80%;
+  padding-bottom: 5px;
 }
 
 
